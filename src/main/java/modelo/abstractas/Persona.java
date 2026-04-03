@@ -1,7 +1,7 @@
 
 package modelo.abstractas;
 
-import modelo.excepciones.DatoInvalidoException;
+import modelo.excepciones.BancoRuntimeException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -36,21 +36,21 @@ public abstract class Persona {
 
     public void setId(String id) {
         if (id == null || id.isEmpty()) {
-            throw new DatoInvalidoException("id", id);
+            throw new BancoRuntimeException("id"+ id);
         }
         this.id = id;
     }
 
     public void setEmail(String email) {
         if (email == null || !email.contains("@")) {
-            throw new DatoInvalidoException("email", email);
+            throw new BancoRuntimeException("email"+ email);
         }
         this.email = email;
     }
 
     public void setFechaNacimiento(LocalDate fecha) {
         if (fecha.isAfter(LocalDate.now())) {
-            throw new DatoInvalidoException("fechaNacimiento", fecha);
+            throw new BancoRuntimeException("fechaNacimiento"+ fecha);
         }
         this.fechaNacimiento = fecha;
     }
